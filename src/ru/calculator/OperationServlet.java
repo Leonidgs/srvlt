@@ -43,21 +43,77 @@ public class OperationServlet extends HttpServlet {
 
             PrintWriter pw = response.getWriter();
 
+            //Доступные операции
+/*
+            "+ - Сложение"
+            "- - Разность"
+            "* - Умножение"
+            "/ - Деление"
+            "div - Целочисленное деление"
+            "mod - Остаток от деления"
+            "^ - Возведение в степень (a - число, b - необходимая степень)"
+*/
+
             switch (operation) {
                 case "+":
-                    obj.setResult(a + b);
+                    obj.setResult(a+b);
                     pw.print(gson.toJson(obj));
                     break;
                 case "-":
-                    obj.setResult(a - b);
+                    obj.setResult(a-b);
                     pw.print(gson.toJson(obj));
                     break;
                 case "*":
-                    obj.setResult(a * b);
+                    obj.setResult(a*b);
                     pw.print(gson.toJson(obj));
                     break;
+                case "/":
+                    if (b != 0) {
+                        double c = a;
+                        obj.setResult(c/a);
+                        pw.print(gson.toJson(obj));
+                        break;
+                    } else {
+                        pw.print("На ноль делить нельзя");
+                        break;
+                    }
+                case "div":
+                    if (b != 0) {
+                        obj.setResult(a/b);
+                        pw.print(gson.toJson(obj));
+                        break;
+                    } else {
+                        pw.print("На ноль делить нельзя");
+                        break;
+                    }
+                case "mod":
+                    if (b != 0) {
+                        obj.setResult(a % b);
+                        pw.print(gson.toJson(obj));
+                        break;
+                    } else {
+                        pw.print("На ноль делить нельзя");
+                        break;
+                    }
+                case "^":
+                    double res = 1;
+                    for (int c = 1; c <= Math.abs(b); c++) {
+                        res = res * a;
+                    }
+                    if (b<0 && b!=0) {
+                        System.out.println(1/res);
+                        obj.setResult(1/res);
+                        pw.print(gson.toJson(obj));
+                    }
+                    else if (b>0 && b!=0) {
+                        obj.setResult(res);
+                        pw.print(gson.toJson(obj));
+                    }
+                    else {
+                        obj.setResult(1);
+                        pw.print(gson.toJson(obj));
+                    }
             }
-
         }
 }
 
