@@ -86,7 +86,6 @@ public class ServletList extends HttpServlet {
         int id = jobj.get("id").getAsInt();
 
         PrintWriter pw = response.getWriter();
-        System.out.println("FFFFFFFFFFFFFFFFFFFF" + id);
 
         if(id == 0) {
             pw.print(gson.toJson(model.getFromList()));
