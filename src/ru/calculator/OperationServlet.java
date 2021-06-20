@@ -70,7 +70,7 @@ public class OperationServlet extends HttpServlet {
                 case "/":
                     if (b != 0) {
                         double c = a;
-                        obj.setResult(c/a);
+                        obj.setResult(c/b);
                         pw.print(gson.toJson(obj));
                         break;
                     } else {
